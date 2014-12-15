@@ -7,8 +7,8 @@
   background-position: center center;
   background-repeat: no-repeat;
 }
-.lazyLoad-container:hover .lazyLoad-play SVG {
-  fill: #ce1312;
+.lazyLoad-container:hover .lazyLoad-play svg {
+  fill: rgb(206,19,18);
 }
 
 .lazyLoad-play {
