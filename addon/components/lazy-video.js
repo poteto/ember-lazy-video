@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   isDisplayed       : false,
   videoTitle        : null,
   videoId           : null,
-  classNames        : [ 'lazyLoadContainer' ],
+  classNames        : [ 'lazyLoad-container' ],
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
 
