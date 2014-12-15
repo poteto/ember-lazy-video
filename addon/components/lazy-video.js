@@ -28,7 +28,7 @@ export default Ember.Component.extend({
     var providers = get(this, 'providers');
     var provider  = get(this, 'provider');
     var videoId   = get(this, 'videoId');
-    providers.get(provider).thumbnailUrl(videoId).then(function(res) {
+    providers.getThumbnailUrl(provider, videoId).then(function(res) {
       this.set('videoThumbnail', res);
     }.bind(this));
   }),
