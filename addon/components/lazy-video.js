@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+var get = Ember.get;
+var set = Ember.set;
+
 export default Ember.Component.extend({
   provider          : null,
   isDisplayed       : false,
@@ -10,27 +13,27 @@ export default Ember.Component.extend({
   videoThumbnail    : null,
 
   click: function() {
-    this.set('isDisplayed', true);
+    set(this, 'isDisplayed', true);
   },
 
   videoSrc: Ember.computed('provider', 'videoId', function() {
-    var providers = this.get('providers');
-    var provider  = this.get('provider');
-    var videoId   = this.get('videoId');
+    var providers = get(this, 'providers');
+    var provider  = get(this, 'provider');
+    var videoId   = get(this, 'videoId');
     return providers.getUrl(provider, 'embedUrl', videoId, { autoplay: 1 });
   }),
 
   _getVideoThumbnail: (function() {
-    var providers = this.get('providers');
-    var provider  = this.get('provider');
-    var videoId   = this.get('videoId');
+    var providers = get(this, 'providers');
+    var provider  = get(this, 'provider');
+    var videoId   = get(this, 'videoId');
     providers.get(provider).thumbnailUrl(videoId).then(function(res) {
       this.set('videoThumbnail', res);
     }.bind(this));
   }).on('didInsertElement'),
 
   style: Ember.computed('videoThumbnail', function() {
-    var thumbnail = this.get('videoThumbnail');
-    return 'background: url(' + thumbnail + ') center center no-repeat';
+    var thumbnail = get('videoThumbnail');
+    return 'background-image: url(' + thumbnail + ') center center no-repeat';
   })
 });
