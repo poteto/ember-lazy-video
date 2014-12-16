@@ -31,7 +31,7 @@
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Lazy loading videos for Ember apps",
   "keywords": [
     "ember-addon",
     "youtube",
