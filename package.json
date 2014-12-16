@@ -1,6 +1,6 @@
 {
   "name": "ember-lazy-video",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -10,11 +10,11 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/poteto/ember-lazy-video",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Lauren Tan",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^1.0.0",
@@ -33,7 +33,10 @@
   },
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "youtube",
+    "vimeo",
+    "lazy load"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
