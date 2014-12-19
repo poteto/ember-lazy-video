@@ -1,6 +1,6 @@
 import Ember from 'ember';
-var on = Ember.on;
 
+var on = Ember.on;
 var get = Ember.get;
 var set = Ember.set;
 
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     var provider  = get(this, 'provider');
     var videoId   = get(this, 'videoId');
     providers.getThumbnailUrl(provider, videoId).then(function(res) {
-      this.set('videoThumbnail', res);
+      set(this, 'videoThumbnail', res);
     }.bind(this));
   }),
 

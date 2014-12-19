@@ -6,7 +6,7 @@ import {
 import makeSubject from '../../helpers/make-subject';
 
 var resolve = Ember.RSVP.resolve;
-
+var run = Ember.run;
 
 moduleForComponent('lazy-video', 'LazyVideoComponent', {
   subject: makeSubject({
@@ -26,7 +26,9 @@ test('it renders with correct style attribute', function() {
     provider: 'youtube'
   });
 
-  this.append();
+  run(function() {
+    component.append();
+  });
 
   var componentStyle = component.$().attr('style');
   ok(/url\(http:\/\/example\.com\)/.test(componentStyle));
