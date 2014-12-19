@@ -1,5 +1,7 @@
 # ember-lazy-video
 
+[![Circle CI](https://circleci.com/gh/poteto/ember-lazy-video.svg?style=svg)](https://circleci.com/gh/poteto/ember-lazy-video)
+
 ```sh
 $ npm install ember-lazy-video --save
 ```
