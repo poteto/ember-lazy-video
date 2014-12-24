@@ -6,7 +6,7 @@
 $ npm install ember-lazy-video --save
 ```
 
-`ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified `providers.
+`ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified providers.
 
 ## Roadmap
 - [ ] Write tests, then release early
