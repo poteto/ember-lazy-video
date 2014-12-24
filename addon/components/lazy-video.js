@@ -35,6 +35,6 @@ export default Ember.Component.extend({
 
   style: Ember.computed('videoThumbnail', function() {
     var thumbnail = get(this, 'videoThumbnail');
-    return 'background-image: url(' + thumbnail + ') center center no-repeat';
+    return 'background: url(' + thumbnail + ') center center no-repeat';
   })
 });
