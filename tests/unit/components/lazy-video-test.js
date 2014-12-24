@@ -22,8 +22,7 @@ test('it renders with correct style attribute', function() {
   expect(1);
 
   var component = this.subject({
-    videoId: '123',
-    provider: 'youtube'
+    url: 'https://www.youtube.com/watch?v=gvdf5n-zI14'
   });
 
   run(function() {

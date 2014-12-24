@@ -19,28 +19,28 @@ module('Lazy Video Providers', {
   }
 });
 
-test('_getProvider with explicit provider', function() {
+test('_getProvider based on `url`', function() {
   var provider;
 
-  provider = service._getProvider('youtube');
+  provider = service._getProvider('https://www.youtube.com/watch?v=gvdf5n-zI14');
   equal(provider, 'YOUTUBE');
 
-  provider = service._getProvider('vimeo');
+  provider = service._getProvider('https://vimeo.com/51771300');
   equal(provider, 'VIMEO');
 
   throws(function() {
-    service._getProvider('nonexistent');
+    service._getProvider(null, 'something invalid');
   });
 });
 
-test('_getProvider guessing based on `videoId`', function() {
-  var provider;
+test('_getVideoId based on `url`', function() {
+  var videoId;
 
-  provider = service._getProvider(null, 'gvdf5n-zI14');
-  equal(provider, 'YOUTUBE');
+  videoId = service._getVideoId('https://www.youtube.com/watch?v=gvdf5n-zI14');
+  equal(videoId, 'gvdf5n-zI14');
 
-  provider = service._getProvider(null, '51771300');
-  equal(provider, 'VIMEO');
+  videoId = service._getVideoId('https://vimeo.com/51771300');
+  equal(videoId, '51771300');
 
   throws(function() {
     service._getProvider(null, 'something invalid');
