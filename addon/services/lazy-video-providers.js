@@ -14,8 +14,6 @@ export default Ember.Object.extend({
     var provider = this._getProvider(url)[endpoint];
     var videoId = this._getVideoId(url);
 
-    //return this._getProvider(provider, videoId)[endpoint](videoId) + '?' + params;
-
     return provider(videoId) + '?' + params;
   },
 
