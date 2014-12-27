@@ -20,7 +20,6 @@ export default Ember.Object.extend({
   youtube: youtube,
   vimeo: vimeo,
 
-
   _getProvider: function(providerName, videoId) {
     var provider;
 

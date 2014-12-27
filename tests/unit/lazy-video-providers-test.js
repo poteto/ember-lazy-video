@@ -5,7 +5,7 @@ import { test } from 'ember-qunit';
 var service;
 var run = Ember.run;
 
-module('Lazy Video Porviders', {
+module('Lazy Video Providers', {
   setup: function() {
     service = LazyVideoProviders.create({
       youtube: 'YOUTUBE',

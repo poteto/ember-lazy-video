@@ -1,6 +1,6 @@
 import Ember from 'ember';
-var on = Ember.on;
 
+var on = Ember.on;
 var get = Ember.get;
 var set = Ember.set;
 
@@ -28,13 +28,15 @@ export default Ember.Component.extend({
     var providers = get(this, 'providers');
     var provider  = get(this, 'provider');
     var videoId   = get(this, 'videoId');
+    var self      = this;
+
     providers.getThumbnailUrl(provider, videoId).then(function(res) {
-      this.set('videoThumbnail', res);
-    }.bind(this));
+      set(self, 'videoThumbnail', res);
+    });
   }),
 
   style: Ember.computed('videoThumbnail', function() {
     var thumbnail = get(this, 'videoThumbnail');
-    return 'background-image: url(' + thumbnail + ') center center no-repeat';
+    return 'background-image: url(' + thumbnail + ')';
   })
 });
