@@ -1,5 +1,6 @@
 {
   "name": "ember-lazy-video",
+  "description": "Lazy loading videos for Ember apps",
   "version": "0.1.2",
   "directories": {
     "doc": "doc",
@@ -17,11 +18,11 @@
   "author": "Lauren Tan",
   "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^1.0.0",
+    "broccoli-asset-rev": "^2.0.0",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "ember-cli": "0.1.4",
+    "ember-cli": "0.1.5",
     "ember-cli-content-security-policy": "0.3.0",
-    "ember-cli-dependency-checker": "0.0.6",
+    "ember-cli-dependency-checker": "0.0.7",
     "ember-cli-esnext": "0.1.1",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
@@ -31,11 +32,11 @@
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },
-  "description": "Lazy loading videos for Ember apps",
   "keywords": [
     "ember-addon",
     "youtube",
     "vimeo",
+    "video",
     "lazy load"
   ],
   "ember-addon": {
