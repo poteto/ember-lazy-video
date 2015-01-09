@@ -5,10 +5,9 @@ var get = Ember.get;
 var set = Ember.set;
 
 export default Ember.Component.extend({
-  provider          : null,
   isDisplayed       : false,
   videoTitle        : null,
-  videoId           : null,
+  url               : null,
   classNames        : [ 'lazyLoad-container' ],
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
@@ -17,20 +16,18 @@ export default Ember.Component.extend({
     set(this, 'isDisplayed', true);
   },
 
-  videoSrc: Ember.computed('provider', 'videoId', function() {
+  videoSrc: Ember.computed('url', function() {
     var providers = get(this, 'providers');
-    var provider  = get(this, 'provider');
-    var videoId   = get(this, 'videoId');
-    return providers.getUrl(provider, 'embedUrl', videoId, { autoplay: 1 });
+    var url       = get(this, 'url');
+    return providers.getUrl(url, 'embedUrl', { autoplay: 1 });
   }),
 
   _getVideoThumbnail: on('didInsertElement', function() {
     var providers = get(this, 'providers');
-    var provider  = get(this, 'provider');
-    var videoId   = get(this, 'videoId');
+    var url       = get(this, 'url');
     var self      = this;
 
-    providers.getThumbnailUrl(provider, videoId).then(function(res) {
+    providers.getThumbnailUrl(url).then(function(res) {
       set(self, 'videoThumbnail', res);
     });
   }),
