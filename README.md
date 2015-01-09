@@ -8,11 +8,12 @@ $ npm install ember-lazy-video --save
 
 `ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified providers.
 
-## Roadmap
-- [ ] Write tests, then release early
-- [ ] Use `ic-ajax` instead of `jQuery`
-- [ ] Refactor service to be able to register new providers
-- [ ] Add more default providers
+## Usage
+
+`ember-lazy-video` currently supports lazy loading videos from Youtube and Vimeo.  Usage in your app is as simple as passing the video's url into a `lazy-video` component:
+
+`{{lazy-video video="https://vimeo.com/108532122"}}`
+`{{lazy-video video="https://www.youtube.com/watch?v=sD72LbIk02M"}}`
 
 ## Contribution
 Please read the [Contributing guidelines](CONTRIBUTING.md) for information on how to contribute.

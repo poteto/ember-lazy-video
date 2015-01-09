@@ -19,28 +19,69 @@ module('Lazy Video Providers', {
   }
 });
 
-test('_getProvider with explicit provider', function() {
-  var provider;
+test('_getProvider from Youtube based on `url`', function() {
+  var provider,
+      expectedProvider;
 
-  provider = service._getProvider('youtube');
-  equal(provider, 'YOUTUBE');
+  expectedProvider = 'YOUTUBE';
 
-  provider = service._getProvider('vimeo');
-  equal(provider, 'VIMEO');
+  provider = service._getProvider('https://www.youtube.com/watch?v=gvdf5n-zI14');
+  equal(provider, expectedProvider);
+
+  provider = service._getProvider('http://youtu.be/duKL2dAJN6I');
+  equal(provider, expectedProvider);
+
+  provider = service._getProvider('https://www.youtube.com/watch?v=duKL2dAJN6I&feature=youtu.be');
+  equal(provider, expectedProvider);
 
   throws(function() {
-    service._getProvider('nonexistent');
+    service._getProvider(null, 'something invalid');
   });
 });
 
-test('_getProvider guessing based on `videoId`', function() {
-  var provider;
+test('_getProvider from Vimeo based on `url`', function() {
+  var provider,
+  expectedProvider;
 
-  provider = service._getProvider(null, 'gvdf5n-zI14');
-  equal(provider, 'YOUTUBE');
+  expectedProvider = 'VIMEO';
 
-  provider = service._getProvider(null, '51771300');
-  equal(provider, 'VIMEO');
+  provider = service._getProvider('https://vimeo.com/51771300');
+  equal(provider, expectedProvider);
+
+  provider = service._getProvider('http://vimeo.com/51771300?pg=embed&sec=');
+  equal(provider, expectedProvider);
+
+  throws(function() {
+    service._getProvider(null, 'something invalid');
+  });
+});
+
+test('_getVideoId from Youtube based on `url`', function() {
+  var videoId,
+      expectedVideoId;
+
+  expectedVideoId = 'gvdf5n-zI14';
+
+  videoId = service._getVideoId('https://www.youtube.com/watch?v=gvdf5n-zI14');
+  equal(videoId, expectedVideoId);
+
+  videoId = service._getVideoId('http://youtu.be/gvdf5n-zI14');
+  equal(videoId, expectedVideoId);
+
+  videoId = service._getVideoId('https://www.youtube.com/watch?v=gvdf5n-zI14&feature=youtu.be');
+  equal(videoId, expectedVideoId);
+});
+
+test('_getVideoId from Vimeo based on `url`', function() {
+  var videoId, expectedVideoId;
+
+  expectedVideoId = '51771300';
+
+  videoId = service._getVideoId('http://vimeo.com/51771300?pg=embed&sec=');
+  equal(videoId, expectedVideoId);
+
+  videoId = service._getVideoId('https://vimeo.com/51771300');
+  equal(videoId, expectedVideoId);
 
   throws(function() {
     service._getProvider(null, 'something invalid');
