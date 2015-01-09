@@ -29,7 +29,7 @@ export default Ember.Component.extend({
 
     providers.getThumbnailUrl(url).then(function(res) {
       set(self, 'videoThumbnail', res);
-    }.bind(this));
+    });
   }),
 
   style: Ember.computed('videoThumbnail', function() {
