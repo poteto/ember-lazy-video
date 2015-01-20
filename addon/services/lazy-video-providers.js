@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import youtube from 'ember-lazy-video/lazy-video-providers/youtube';
 import vimeo from 'ember-lazy-video/lazy-video-providers/vimeo';
+import instagram from 'ember-lazy-video/lazy-video-providers/instagram';
 
 var YOUTUBE_REGEX = /(https?:\/\/)?(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?/;
 var VIMEO_REGEX   = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
+var INSTAGRAM_REGEX = /(https?:\/\/)?(www.)?instagr(am\.com|\.am)\/p\/([A-Za-z0-9_-]*)/;
 
 export default Ember.Object.extend({
   getUrl: function(url, endpoint, opts) {
@@ -24,6 +26,7 @@ export default Ember.Object.extend({
 
   youtube: youtube,
   vimeo: vimeo,
+  instagram: instagram,
 
   _getVideoId: function(url) {
     var videoId, video;
@@ -35,6 +38,11 @@ export default Ember.Object.extend({
 
       if (YOUTUBE_REGEX.test(url)) {
         video = YOUTUBE_REGEX.exec(url);
+        videoId = video[4];
+      }
+
+      if (INSTAGRAM_REGEX.test(url)) {
+        video = INSTAGRAM_REGEX.exec(url);
         videoId = video[4];
       }
     }
@@ -55,6 +63,10 @@ export default Ember.Object.extend({
 
       if (YOUTUBE_REGEX.test(url)) {
         providerName = 'youtube';
+      }
+
+      if (INSTAGRAM_REGEX.test(url)) {
+        providerName = 'instagram';
       }
     }
 
