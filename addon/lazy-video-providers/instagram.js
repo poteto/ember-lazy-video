@@ -1,10 +1,15 @@
 import Ember from 'ember';
+import videoPromise from '../utils/videoPromise';
 
 export default {
+  name: 'instagram',
+  
   embedUrl: function(videoId) {
-    return 'http://instagram.com/p/' + videoId + '/embed';
+    return videoPromise.endPoint('http://instagram.com/p/%@/embed'.fmt(videoId));
   },
+
   thumbnailUrl: function(videoId) {
-    return Ember.RSVP.resolve('http://instagram.com/p/' + videoId + '/media/?size=l');
+    var thumbnailPath = 'http://instagram.com/p/%@/media/?size=l'.fmt(videoId);
+    return Ember.RSVP.resolve(thumbnailPath);
   }
 };
