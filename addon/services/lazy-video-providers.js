@@ -8,7 +8,7 @@ var VIMEO_REGEX   = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|gro
 var INSTAGRAM_REGEX = /(https?:\/\/)?(www.)?instagr(am\.com|\.am)\/p\/([A-Za-z0-9_-]*)/;
 
 export default Ember.Object.extend({
-  getUrl: function(url, endpoint, opts) {
+  getUrl(url, endpoint, opts) {
     var params;
     opts = (typeof opts === "undefined") ? {} : opts;
     params = Ember.$.param(opts);
@@ -19,7 +19,7 @@ export default Ember.Object.extend({
     return provider(videoId) + '?' + params;
   },
 
-  getThumbnailUrl: function(url) {
+  getThumbnailUrl(url) {
     var videoId = this._getVideoId(url);
     return this._getProvider(url).thumbnailUrl(videoId);
   },
@@ -28,7 +28,7 @@ export default Ember.Object.extend({
   vimeo: vimeo,
   instagram: instagram,
 
-  _getVideoId: function(url) {
+  _getVideoId(url) {
     var videoId, video;
     if (url) {
       if (VIMEO_REGEX.test(url)) {
@@ -52,7 +52,7 @@ export default Ember.Object.extend({
     return videoId;
   },
 
-  _getProvider: function(url) {
+  _getProvider(url) {
     var providerName,
     provider;
 

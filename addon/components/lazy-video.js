@@ -1,8 +1,10 @@
 import Ember from 'ember';
-
-var on = Ember.on;
-var get = Ember.get;
-var set = Ember.set;
+const {
+  on,
+  get,
+  inject,
+  set
+} = Ember;
 
 export default Ember.Component.extend({
   isDisplayed       : false,
@@ -11,29 +13,33 @@ export default Ember.Component.extend({
   classNames        : [ 'lazyLoad-container' ],
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
+  providers         : inject.service('lazy-video-providers'),
 
-  click: function() {
+  click() {
     set(this, 'isDisplayed', true);
   },
 
-  videoSrc: Ember.computed('url', function() {
-    var providers = get(this, 'providers');
-    var url       = get(this, 'url');
-    return providers.getUrl(url, 'embedUrl', { autoplay: 1 });
-  }),
+  videoSrc: Ember.computed('url', {
+    get() {
+      const providers = get(this, 'providers');
+      const url       = get(this, 'url');
+      return providers.getUrl(url, 'embedUrl', { autoplay: 1 });
+    }
+  }).readOnly(),
 
   _getVideoThumbnail: on('didInsertElement', function() {
-    var providers = get(this, 'providers');
-    var url       = get(this, 'url');
-    var self      = this;
+    const providers = get(this, 'providers');
+    const url       = get(this, 'url');
 
-    providers.getThumbnailUrl(url).then(function(res) {
-      set(self, 'videoThumbnail', res);
+    providers.getThumbnailUrl(url).then((res) => {
+      set(this, 'videoThumbnail', res);
     });
   }),
 
-  style: Ember.computed('videoThumbnail', function() {
-    var thumbnail = get(this, 'videoThumbnail');
-    return 'background-image: url(' + thumbnail + ')';
-  })
+  style: Ember.computed('videoThumbnail', {
+    get() {
+      const thumbnail = get(this, 'videoThumbnail');
+      return 'background-image: url(' + thumbnail + ')';
+    }
+  }).readOnly()
 });

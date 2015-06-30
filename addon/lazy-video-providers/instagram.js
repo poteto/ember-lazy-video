@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default {
-  embedUrl: function(videoId) {
+  embedUrl(videoId) {
     return 'http://instagram.com/p/' + videoId + '/embed';
   },
-  thumbnailUrl: function(videoId) {
+  thumbnailUrl(videoId) {
     return Ember.RSVP.resolve('http://instagram.com/p/' + videoId + '/media/?size=l');
   }
 };
