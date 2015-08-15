@@ -1,5 +1,5 @@
 {{#if isDisplayed}}
-  <iframe {{bind-attr src=videoSrc}} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+  <iframe src={{videoSrc}} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 {{else}}
   {{#if template}}
     {{yield}}
