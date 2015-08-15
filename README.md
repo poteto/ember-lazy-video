@@ -2,8 +2,16 @@
 
 [![Circle CI](https://circleci.com/gh/poteto/ember-lazy-video.svg?style=svg)](https://circleci.com/gh/poteto/ember-lazy-video)
 
-```sh
-$ npm install ember-lazy-video --save
+### Installation
+
+```bash
+$ ember install ember-cli-slick
+```
+
+#### Installation for ember-cli 0.1.5 - 0.2.2
+
+```bash
+$ ember install:addon ember-cli-slick
 ```
 
 `ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified providers.
