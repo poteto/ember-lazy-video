@@ -5,13 +5,13 @@
 ### Installation
 
 ```bash
-$ ember install ember-cli-slick
+$ ember install ember-lazy-video
 ```
 
 #### Installation for ember-cli 0.1.5 - 0.2.2
 
 ```bash
-$ ember install:addon ember-cli-slick
+$ ember install:addon ember-lazy-video
 ```
 
 `ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified providers.
