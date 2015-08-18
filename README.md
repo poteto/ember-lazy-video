@@ -26,6 +26,10 @@ $ ember install:addon ember-cli-slick
 
 `{{lazy-video url="http://instagram.com/p/vXeXAnsieB/"}}`
 
+You can add a custom poster image by setting the poster attribute:
+
+`{{lazy-video url="https://vimeo.com/108532122" poster="images/poster.jpg"}}`
+
 ## Contribution
 Please read the [Contributing guidelines](CONTRIBUTING.md) for information on how to contribute.
 
