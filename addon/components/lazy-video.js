@@ -11,6 +11,7 @@ export default Ember.Component.extend({
   classNames        : [ 'lazyLoad-container' ],
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
+  poster            : null,
 
   click: function() {
     set(this, 'isDisplayed', true);
@@ -25,7 +26,13 @@ export default Ember.Component.extend({
   _getVideoThumbnail: on('didInsertElement', function() {
     var providers = get(this, 'providers');
     var url       = get(this, 'url');
+    var poster    = get(this, 'poster');
     var self      = this;
+
+    if ( poster ) {
+      set(this, 'videoThumbnail', poster);
+      return;
+    }
 
     providers.getThumbnailUrl(url).then(function(res) {
       set(self, 'videoThumbnail', res);
