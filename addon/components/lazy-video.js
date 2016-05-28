@@ -15,6 +15,7 @@ export default Ember.Component.extend({
 
   click: function() {
     set(this, 'isDisplayed', true);
+    this.sendAction('showingVideo');
   },
 
   videoSrc: Ember.computed('url', function() {
