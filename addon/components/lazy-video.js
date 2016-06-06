@@ -31,7 +31,6 @@ export default Ember.Component.extend({
     var self      = this;
 
     if ( poster ) {
-      set(this, 'videoThumbnail', poster);
       return;
     }
 
@@ -40,8 +39,9 @@ export default Ember.Component.extend({
     });
   }),
 
-  style: Ember.computed('videoThumbnail', function() {
-    var thumbnail = get(this, 'videoThumbnail');
+  style: Ember.computed('videoThumbnail', 'poster', function() {
+    var poster = get(this, 'poster');
+    var thumbnail = poster || get(this, 'videoThumbnail');
     return 'background-image: url(' + thumbnail + ')';
   })
 });
