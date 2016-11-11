@@ -6,6 +6,7 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
 }
 .lazyLoad-container:hover .lazyLoad-play svg {
   fill: rgb(206,19,18);

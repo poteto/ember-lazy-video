@@ -2,8 +2,16 @@
 
 [![Circle CI](https://circleci.com/gh/poteto/ember-lazy-video.svg?style=svg)](https://circleci.com/gh/poteto/ember-lazy-video)
 
-```sh
-$ npm install ember-lazy-video --save
+### Installation
+
+```bash
+$ ember install ember-lazy-video
+```
+
+#### Installation for ember-cli 0.1.5 - 0.2.2
+
+```bash
+$ ember install:addon ember-lazy-video
 ```
 
 `ember-lazy-video` is a simple component and service that deals with lazy loading of videos from specified providers.
@@ -12,11 +20,15 @@ $ npm install ember-lazy-video --save
 
 `ember-lazy-video` currently supports lazy loading videos from Youtube, Vimeo and Instagram.  Usage in your app is as simple as passing the video's url into a `lazy-video` component:
 
-`{{lazy-video video="https://vimeo.com/108532122"}}`
+`{{lazy-video url="https://vimeo.com/108532122"}}`
 
-`{{lazy-video video="https://www.youtube.com/watch?v=sD72LbIk02M"}}`
+`{{lazy-video url="https://www.youtube.com/watch?v=sD72LbIk02M"}}`
 
-`{{lazy-video video="http://instagram.com/p/vXeXAnsieB/"}}`
+`{{lazy-video url="http://instagram.com/p/vXeXAnsieB/"}}`
+
+You can add a custom poster image by setting the poster attribute:
+
+`{{lazy-video url="https://vimeo.com/108532122" poster="images/poster.jpg"}}`
 
 ## Contribution
 Please read the [Contributing guidelines](CONTRIBUTING.md) for information on how to contribute.

@@ -11,9 +11,11 @@ export default Ember.Component.extend({
   classNames        : [ 'lazyLoad-container' ],
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
+  poster            : null,
 
   click: function() {
     set(this, 'isDisplayed', true);
+    this.sendAction('showingVideo');
   },
 
   videoSrc: Ember.computed('url', function() {
@@ -25,15 +27,21 @@ export default Ember.Component.extend({
   _getVideoThumbnail: on('didInsertElement', function() {
     var providers = get(this, 'providers');
     var url       = get(this, 'url');
+    var poster    = get(this, 'poster');
     var self      = this;
+
+    if ( poster ) {
+      return;
+    }
 
     providers.getThumbnailUrl(url).then(function(res) {
       set(self, 'videoThumbnail', res);
     });
   }),
 
-  style: Ember.computed('videoThumbnail', function() {
-    var thumbnail = get(this, 'videoThumbnail');
+  style: Ember.computed('videoThumbnail', 'poster', function() {
+    var poster = get(this, 'poster');
+    var thumbnail = poster || get(this, 'videoThumbnail');
     return 'background-image: url(' + thumbnail + ')';
   })
 });
