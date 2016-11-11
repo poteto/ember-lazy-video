@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
-var on = Ember.on;
-var get = Ember.get;
-var set = Ember.set;
+const {
+  on,
+  get,
+  inject,
+  set
+} = Ember;
 
 export default Ember.Component.extend({
   isDisplayed       : false,
@@ -12,8 +15,9 @@ export default Ember.Component.extend({
   attributeBindings : [ 'style' ],
   videoThumbnail    : null,
   poster            : null,
+  providers: inject.service('lazy-video-providers'),
 
-  click: function() {
+  click() {
     set(this, 'isDisplayed', true);
     this.sendAction('showingVideo');
   },
@@ -42,6 +46,6 @@ export default Ember.Component.extend({
   style: Ember.computed('videoThumbnail', 'poster', function() {
     var poster = get(this, 'poster');
     var thumbnail = poster || get(this, 'videoThumbnail');
-    return 'background-image: url(' + thumbnail + ')';
+    return Ember.String.htmlSafe('background-image: url(' + encodeURI(thumbnail) + ')');
   })
 });

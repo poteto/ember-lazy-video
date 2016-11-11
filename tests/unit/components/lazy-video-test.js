@@ -5,23 +5,24 @@ import {
 } from 'ember-qunit';
 import makeSubject from '../../helpers/make-subject';
 
-var resolve = Ember.RSVP.resolve;
-var run = Ember.run;
+const resolve = Ember.RSVP.resolve;
+const run = Ember.run;
 
 moduleForComponent('lazy-video', 'LazyVideoComponent', {
+  unit: true,
   subject: makeSubject({
     providers: {
-      getThumbnailUrl: function() {
+      getThumbnailUrl() {
         return resolve('http://example.com');
       }
     }
   })
 });
 
-test('it renders with correct style attribute', function() {
-  expect(1);
+test('it renders with correct style attribute', function(assert) {
+  assert.expect(1);
 
-  var component = this.subject({
+  let component = this.subject({
     url: 'https://www.youtube.com/watch?v=gvdf5n-zI14'
   });
 
@@ -29,6 +30,6 @@ test('it renders with correct style attribute', function() {
     component.append();
   });
 
-  var componentStyle = component.$().attr('style');
-  ok(/url\(http:\/\/example\.com\)/.test(componentStyle));
+  let componentStyle = component.$().attr('style');
+  assert.ok(/url\(http:\/\/example\.com\)/.test(componentStyle));
 });
