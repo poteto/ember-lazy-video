@@ -1,3 +1,19 @@
 html, body {
   margin: 20px;
+  cursor: auto;
+}
+
+.lazyLoad-container {
+  padding-top: 1.5625rem;
+  padding-bottom: 67.5%;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.lazyLoad-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

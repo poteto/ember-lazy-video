@@ -1,9 +1,11 @@
 import Ember from 'ember';
-var merge = Ember.merge;
+const {
+  merge
+} = Ember;
 
 export default function makeSubject(options) {
   return function(updates, klass, container) {
-    var defaults = options;
+    let defaults = options;
     if (typeof options === 'function') {
       defaults = options.call(this, container);
     }

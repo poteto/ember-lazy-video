@@ -3,33 +3,39 @@ import youtube from 'ember-lazy-video/lazy-video-providers/youtube';
 import vimeo from 'ember-lazy-video/lazy-video-providers/vimeo';
 import instagram from 'ember-lazy-video/lazy-video-providers/instagram';
 
-var YOUTUBE_REGEX = /(https?:\/\/)?(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?/;
-var VIMEO_REGEX   = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
-var INSTAGRAM_REGEX = /(https?:\/\/)?(www.)?instagr(am\.com|\.am)\/p\/([A-Za-z0-9_-]*)/;
+const YOUTUBE_REGEX = /(https?:\/\/)?(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?/;
+const VIMEO_REGEX   = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
+const INSTAGRAM_REGEX = /(https?:\/\/)?(www.)?instagr(am\.com|\.am)\/p\/([A-Za-z0-9_-]*)/;
 
-export default Ember.Object.extend({
-  getUrl: function(url, endpoint, opts) {
-    var params;
-    opts = (typeof opts === "undefined") ? {} : opts;
-    params = Ember.$.param(opts);
+const {
+  Service,
+  $,
+  assert
+} = Ember;
 
-    var provider = this._getProvider(url)[endpoint];
-    var videoId = this._getVideoId(url);
+export default Service.extend({
+  getUrl(url, endpoint, opts) {
+    let params;
+    opts = (typeof opts === 'undefined') ? {} : opts;
+    params = $.param(opts);
 
-    return provider(videoId) + '?' + params;
+    let provider = this._getProvider(url)[endpoint];
+    let videoId = this._getVideoId(url);
+
+    return `${provider(videoId)}?${params}`;
   },
 
-  getThumbnailUrl: function(url) {
-    var videoId = this._getVideoId(url);
+  getThumbnailUrl(url) {
+    let videoId = this._getVideoId(url);
     return this._getProvider(url).thumbnailUrl(videoId);
   },
 
-  youtube: youtube,
-  vimeo: vimeo,
-  instagram: instagram,
+  youtube,
+  vimeo,
+  instagram,
 
-  _getVideoId: function(url) {
-    var videoId, video;
+  _getVideoId(url) {
+    let videoId, video;
     if (url) {
       if (VIMEO_REGEX.test(url)) {
         video = VIMEO_REGEX.exec(url);
@@ -47,14 +53,13 @@ export default Ember.Object.extend({
       }
     }
 
-    Ember.assert('Couldn\'t determine videoId from `url`: ' + url, videoId);
+    assert(`Couldn't determine videoId from url: ${url}`, videoId);
 
     return videoId;
   },
 
-  _getProvider: function(url) {
-    var providerName,
-    provider;
+  _getProvider(url) {
+    let providerName, provider;
 
     if (url) {
       if (VIMEO_REGEX.test(url)) {
@@ -71,7 +76,7 @@ export default Ember.Object.extend({
     }
 
     provider = this.get(providerName);
-    Ember.assert('Couldn\'t determine provider from `url`: ' + url, provider);
+    assert(`Couldn't determine provider from url: ${url}`, provider);
 
     return provider;
   }

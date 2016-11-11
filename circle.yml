@@ -1,0 +1,20 @@
+machine:
+  node:
+    version: "stable"
+dependencies:
+  override:
+    - npm install -g bower
+    - npm install
+    - bower install
+test:
+  override:
+    - ? >
+        PATH="./node_modules/.bin:$PATH";
+
+        case $CIRCLE_NODE_INDEX in
+        0) ember try ember-1.13 ;;
+        1) ember try ember-lts-2.4 ;;
+        2) ember try ember-release ;;
+        3) ember try ember-beta ;;
+        esac
+      : parallel: true
