@@ -1,10 +1,14 @@
 import Ember from 'ember';
 
+const {
+  RSVP
+} = Ember;
+
 export default {
   embedUrl(videoId) {
-    return 'http://instagram.com/p/' + videoId + '/embed';
+    return `http://instagram.com/p/${videoId}/embed`;
   },
   thumbnailUrl(videoId) {
-    return Ember.RSVP.resolve('http://instagram.com/p/' + videoId + '/media/?size=l');
+    return RSVP.resolve(`http://instagram.com/p/${videoId}/media/?size=l`);
   }
 };

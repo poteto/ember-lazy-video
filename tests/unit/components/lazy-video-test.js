@@ -5,8 +5,12 @@ import {
 } from 'ember-qunit';
 import makeSubject from '../../helpers/make-subject';
 
-const resolve = Ember.RSVP.resolve;
-const run = Ember.run;
+const {
+  RSVP: {
+    resolve
+  },
+  run
+} = Ember;
 
 moduleForComponent('lazy-video', 'LazyVideoComponent', {
   unit: true,

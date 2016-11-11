@@ -2,8 +2,11 @@ import Ember from 'ember';
 import LazyVideoProviders from 'ember-lazy-video/services/lazy-video-providers';
 import { module, test } from 'qunit';
 
+const {
+  run
+} = Ember;
+
 let service;
-const run = Ember.run;
 
 module('Lazy Video Providers - Youtube', {
   beforeEach() {
@@ -19,8 +22,7 @@ module('Lazy Video Providers - Youtube', {
 });
 
 test('_getProvider from Youtube based on `url`', function(assert) {
-  let provider,
-  expectedProvider;
+  let provider, expectedProvider;
 
   expectedProvider = 'YOUTUBE';
 
@@ -39,8 +41,7 @@ test('_getProvider from Youtube based on `url`', function(assert) {
 });
 
 test('_getVideoId from Youtube based on `url`', function(assert) {
-  let videoId,
-  expectedVideoId;
+  let videoId, expectedVideoId;
 
   expectedVideoId = 'gvdf5n-zI14';
 

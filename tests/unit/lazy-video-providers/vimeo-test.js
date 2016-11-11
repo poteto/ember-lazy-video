@@ -2,8 +2,11 @@ import Ember from 'ember';
 import LazyVideoProviders from 'ember-lazy-video/services/lazy-video-providers';
 import { module, test } from 'qunit';
 
+const {
+  run
+} = Ember;
+
 let service;
-const run = Ember.run;
 
 module('Lazy Video Providers  Vimeo', {
   beforeEach() {
@@ -19,8 +22,7 @@ module('Lazy Video Providers  Vimeo', {
 });
 
 test('_getProvider from Vimeo based on `url`', function(assert) {
-  let provider,
-  expectedProvider;
+  let provider, expectedProvider;
 
   expectedProvider = 'VIMEO';
 
