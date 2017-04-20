@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { task } from 'ember-concurrency';
 
 const {
   on,
@@ -20,6 +21,30 @@ export default Component.extend({
   poster: null,
   providers: inject.service('lazy-video-providers'),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    let poster = get(this, 'poster');
+    if (poster) {
+      return;
+    }
+
+    let _url = get(this, '_url');
+    let url = get(this, 'url');
+    if (_url !== url) {
+      get(this, 'getThumbnailTask').perform(url);
+      set(this, '_url', url);
+    }
+  },
+
+  getThumbnailTask: task(function *(url) {
+    let providers = get(this, 'providers');
+
+    let image = yield providers.getThumbnailUrl(url);
+
+    set(this, 'videoThumbnail', image);
+  }).restartable(),
+
   click() {
     set(this, 'isDisplayed', true);
     this.sendAction('showingVideo');
@@ -29,20 +54,6 @@ export default Component.extend({
     let providers = get(this, 'providers');
     let url       = get(this, 'url');
     return providers.getUrl(url, 'embedUrl', { autoplay: 1 });
-  }),
-
-  _getVideoThumbnail: on('didInsertElement', function() {
-    let providers = get(this, 'providers');
-    let url       = get(this, 'url');
-    let poster    = get(this, 'poster');
-
-    if (poster) {
-      return;
-    }
-
-    providers.getThumbnailUrl(url).then((res) => {
-      set(this, 'videoThumbnail', res);
-    });
   }),
 
   style: computed('videoThumbnail', 'poster', function() {
