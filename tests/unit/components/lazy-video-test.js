@@ -26,11 +26,12 @@ moduleForComponent('lazy-video', 'LazyVideoComponent', {
 test('it renders with correct style attribute', function(assert) {
   assert.expect(1);
 
-  let component = this.subject({
-    url: 'https://www.youtube.com/watch?v=gvdf5n-zI14'
-  });
+  let component;
+  run(this, function() {
+    component = this.subject({
+      url: 'https://www.youtube.com/watch?v=gvdf5n-zI14'
+    });
 
-  run(function() {
     component.append();
   });
 
