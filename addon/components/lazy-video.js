@@ -2,7 +2,6 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 
 const {
-  on,
   get,
   inject,
   set,
@@ -37,7 +36,7 @@ export default Component.extend({
     }
   },
 
-  getThumbnailTask: task(function *(url) {
+  getThumbnailTask: task(function* (url) {
     let providers = get(this, 'providers');
 
     let image = yield providers.getThumbnailUrl(url);
