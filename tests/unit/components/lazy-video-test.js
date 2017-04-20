@@ -27,7 +27,7 @@ test('it renders with correct style attribute', function(assert) {
   assert.expect(1);
 
   let component;
-  run(() => {
+  run(this, function() {
     component = this.subject({
       url: 'https://www.youtube.com/watch?v=gvdf5n-zI14'
     });
